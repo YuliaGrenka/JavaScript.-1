@@ -1,0 +1,52 @@
+<div></div>
+<script>
+    var table = document.createElement("table");
+    var tr, td;
+    var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+    var chessFigure = ['&#9817;', '&#9814;', '&#9815;', '&#9816;', '&#9813;', '&#9812;', '&#9816;', '&#9815;', '&#9814;'];
+    for (var i = 1; i <= 10; i++) {
+        tr = document.createElement('tr');
+        table.append(tr);
+        for (var j = 1; j <= 10; j++) {
+            td = document.createElement("td");
+            if ((i == 10 && j != 1 && j != 10) || (i == 1 && j != 1 && j != 10)) {
+                td.innerHTML = "<h2>" + alphabet[j - 2] + "</h2>";
+            }
+            if ((j == 1 && i != 1 && i != 10) || (j == 10 && i != 1 && i != 10)) {
+                td.innerHTML = "<h2>" + (10 - i) + "</h2>";
+            }
+            if ((i == 1 && j != 1 && j != 10) || ((j == 10 && i != 1 && i != 10))) {
+                td.style.transform = "rotate(180deg)";
+            }
+            if (i > 1 && j > 1 && i < 10 && j < 10) {
+                if ((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0)) {
+                    td.style.backgroundColor = "#FFDEAD";
+                } else if ((i % 2 != 0 && j % 2 == 0) || (i % 2 == 0 && j % 2 != 0)) {
+                    td.style.backgroundColor = "#8B4513";
+                }
+            }
+            if ((i == 3 && j > 1 && j < 10) || (i == 8 && j > 1 && j < 10)) {
+                td.innerHTML = "<h2>" + chessFigure[0] + "</h2>";
+                if (i == 3) {
+                    td.style.color = "black";
+                } else {
+                    td.style.color = "white";
+                }
+            }
+            if ((i == 2 && j > 1 && j < 10) || (i == 9 && j > 1 && j < 10)) {
+                td.innerHTML = "<h2>" + chessFigure[j - 1] + "</h2>";
+                if (i == 2) {
+                    td.style.color = "black";
+                } else {
+                    td.style.color = "white";
+                }
+            }
+            td.style.width = "55px";
+            td.style.height = "55px";
+            td.style.textAlign = "center";
+            td.style.border = "1px solid black";
+            tr.append(td);
+        }
+    }
+    document.querySelector("div").append(table);
+</script>
